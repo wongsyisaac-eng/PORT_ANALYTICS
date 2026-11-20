@@ -53,6 +53,14 @@ export type Risk = {
   weights: { symbol: string; weight: number | null }[];
 };
 
+export type Sharpe = {
+  annual: number | null; // null until enough days of NAV
+  daily: number | null;
+  risk_free_annual: number;
+  observations: number;
+  min_observations: number;
+};
+
 export type Correlation = {
   symbols: string[];
   matrix: (number | null)[][]; // matrix[i][j] = correlation of symbols[i] and symbols[j]
@@ -65,6 +73,7 @@ export type Dashboard = {
   nav: NavRow[];
   returns: Returns;
   risk: Risk;
+  sharpe: Sharpe;
   correlation: Correlation;
 };
 
@@ -78,15 +87,16 @@ async function getJson<T>(path: string): Promise<T> {
   return (await response.json()) as T;
 }
 
-// Fetch all six endpoints at the same time (Promise.all runs them in parallel).
+// Fetch all seven endpoints at the same time (Promise.all runs them in parallel).
 export async function fetchDashboard(): Promise<Dashboard> {
-  const [positions, trades, nav, returns, risk, correlation] = await Promise.all([
+  const [positions, trades, nav, returns, risk, sharpe, correlation] = await Promise.all([
     getJson<Position[]>("/positions"),
     getJson<Trade[]>("/trades"),
     getJson<NavRow[]>("/nav"),
     getJson<Returns>("/returns"),
     getJson<Risk>("/risk"),
+    getJson<Sharpe>("/sharpe"),
     getJson<Correlation>("/correlation"),
   ]);
-  return { positions, trades, nav, returns, risk, correlation };
+  return { positions, trades, nav, returns, risk, sharpe, correlation };
 }

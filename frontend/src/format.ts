@@ -20,7 +20,9 @@ export function num(x: number | null | undefined, digits = 2): string {
   return x.toLocaleString("en-GB", { maximumFractionDigits: digits });
 }
 
-// Large values for chart axes: 1000381 -> "1.00M"
+
+// Axis ticks: 3+ significant figures so close values stay distinguishable
+// (1000381 -> "1.000M", not "1M"). Small values like -414.11 -> "-414".
 export function compact(x: number): string {
-  return x.toLocaleString("en-GB", { notation: "compact", maximumFractionDigits: 2 });
+  return x.toLocaleString("en-GB", { notation: "compact", maximumSignificantDigits: 4 });
 }

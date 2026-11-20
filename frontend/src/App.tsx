@@ -10,6 +10,7 @@ import NavChart from "./components/NavChart";
 import WeightsChart from "./components/WeightsChart";
 import PositionsTable from "./components/PositionsTable";
 import CorrelationHeatmap from "./components/CorrelationHeatmap";
+import SharpeSection from "./components/SharpeSection";
 import TradesTable from "./components/TradesTable";
 
 export default function App() {
@@ -76,6 +77,11 @@ export default function App() {
           <section className="card">
             <h2>NAV and cumulative PnL</h2>
             <NavChart nav={data.nav} />
+          </section>
+
+          <section className="card">
+            <h2>Sharpe ratio</h2>
+            <SharpeSection sharpe={data.sharpe} />
           </section>
 
           <div className="two-col">

@@ -34,7 +34,7 @@ export default function NavChart({ nav }: { nav: NavRow[] }) {
         <Legend />
         <Line yAxisId="nav" dataKey="nav" name="NAV" stroke="var(--series-1)" strokeWidth={2} dot={false} />
         <Line yAxisId="pnl" dataKey="cumulative_pnl" name="Cumulative PnL" stroke="var(--series-2)"
-              strokeWidth={2} dot={false} connectNulls />
+              strokeWidth={2} dot={{ r: 3 }} connectNulls />
       </LineChart>
     </ResponsiveContainer>
   );

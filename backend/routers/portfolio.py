@@ -11,8 +11,8 @@ import pandas as pd
 from fastapi import APIRouter, Depends
 
 import storage
-from analytics import returns, risk
-from env_config import DB_PATH
+from analytics import performance, returns, risk
+from env_config import DB_PATH, RISK_FREE_RATE
 from serialize import df_records, num
 
 router = APIRouter()
@@ -102,6 +102,21 @@ def portfolio_risk(conn: sqlite3.Connection = Conn) -> dict:
     if realised:
         out.update(realised_daily=num(realised[0]), realised_annual=num(realised[1]))
     return out
+
+
+@router.get("/sharpe")
+def sharpe(conn: sqlite3.Connection = Conn) -> dict:
+    nav = storage.load_nav(conn)
+    flows = storage.load_cash_flows(conn)
+    daily = returns.twr_daily(nav, flows) if len(nav) >= 2 else pd.Series(dtype=float)
+    result = performance.sharpe_ratio(daily, RISK_FREE_RATE)
+    return {
+        "annual": num(result["annual"]) if result else None,
+        "daily": num(result["daily"]) if result else None,
+        "risk_free_annual": RISK_FREE_RATE,
+        "observations": len(daily),
+        "min_observations": 20,
+    }
 
 
 @router.get("/correlation")

@@ -22,6 +22,7 @@ backend/main.py, backend/routers: puts results through FASTAPI
 - Money-weighted (MWR): internal rate of return over the whole period. It equals the simple return when there are no cash flows.
 - Cost basis: IB's own realised PnL per trade (from the commission report). 
 - Portfolio std (ex-ante): sqrt(w' Σ w), where w = market value / NAV for today's holdings (cash has zero volatility) and Σ is the covariance of about 1 year of daily returns. Annualised with 252 days. Realised std from NAV returns is shown once there are 20 days of history.
+- Sharpe ratio: mean(daily TWR - daily risk-free) / std(daily TWR) * sqrt(252), in `backend/analytics/performance.py`. Needs 20+ days of NAV. Set the annual risk-free rate with `RISK_FREE_RATE` in `.env` (default 0, e.g. 0.045).
 - Correlation: Pearson correlation of daily returns of the holdings over the same price window.
 
 Note: This tool may only be run with an ibkr gateway logged into the trading account and running in background to provide API connection. 

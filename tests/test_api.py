@@ -8,7 +8,7 @@ import storage
 from main import app
 from routers.portfolio import get_conn
 
-ENDPOINTS = ["/positions", "/trades", "/nav", "/returns", "/risk", "/correlation"]
+ENDPOINTS = ["/positions", "/trades", "/nav", "/returns", "/risk", "/sharpe", "/correlation"]
 
 
 @pytest.fixture
