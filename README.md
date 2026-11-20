@@ -34,3 +34,9 @@ IBKR TWS live: 7496
 IBKR TWS paper: 7497
 
 Edit in env_config.py
+
+<img width="1230" height="459" alt="Screenshot 2026-11-19 at 05 14 18" src="https://github.com/user-attachments/assets/aac8b7f9-12df-4732-9eb9-48f1a9350573" />
+
+<img width="1235" height="571" alt="Screenshot 2026-11-19 at 05 14 38" src="https://github.com/user-attachments/assets/786235e0-3e17-40ab-8ab4-12bb92612328" />
+
+<img width="1281" height="570" alt="Screenshot 2026-11-19 at 05 14 57" src="https://github.com/user-attachments/assets/419b6cd1-2f28-405c-8b29-796f4b55568c" />
