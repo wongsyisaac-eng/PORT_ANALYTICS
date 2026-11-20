@@ -41,10 +41,10 @@ Statistics such as portfolio std, Sharpe Ratio, and cumulative PnL are not shown
 ## Screenshots
 
 ### Overview: NAV, exposure, volatility and returns
-![Dashboard overview](images/weights-correlation.png)
+![Dashboard overview](images/dashboard-overview.png)
 
 ### Positions
-![Positions table](images/weights-correlation.png)
+![Positions table](images/positions.png)
 
 ### Weights and correlation of daily returns
 ![Weights and correlation heatmap](images/weights-correlation.png)
